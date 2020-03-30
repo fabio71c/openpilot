@@ -89,7 +89,7 @@ def fingerprint(logcan, sendcan, has_relay):
   candidate_cars = {i: all_known_cars() for i in [0, 1]}  # attempt fingerprint on both bus 0 and 1
   frame = 0
   frame_fingerprint = 10  # 0.1s
-  car_fingerprint = "OLD_CAR"
+  car_fingerprint = None
   done = False
 
   while not done:
@@ -147,7 +147,7 @@ def get_car(logcan, sendcan, has_relay=False):
 
   if candidate is None:
     cloudlog.warning("car doesn't match any fingerprints: %r", fingerprints)
-    candidate = "OLD_CAR"
+    candidate = "CAR.OLD_CAR"
 
   CarInterface, CarController = interfaces[candidate]
   car_params = CarInterface.get_params(candidate, fingerprints, has_relay, car_fw)
