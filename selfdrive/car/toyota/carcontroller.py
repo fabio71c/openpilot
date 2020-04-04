@@ -6,6 +6,7 @@ from selfdrive.car.toyota.toyotacan import create_steer_command, create_ui_comma
                                            create_acc_cancel_command, create_fcw_command
 from selfdrive.car.toyota.values import Ecu, CAR, STATIC_MSGS, SteerLimitParams
 from opendbc.can.packer import CANPacker
+import cereal.messaging as messaging
 
 VisualAlert = car.CarControl.HUDControl.VisualAlert
 
@@ -88,6 +89,7 @@ class CarController():
     self.last_standstill = False
     self.standstill_req = False
     self.angle_control = False
+    self.sm = messaging.SubMaster(['radarState'])
 
     self.steer_angle_enabled = False
     self.ipas_reset_counter = 0
@@ -103,7 +105,8 @@ class CarController():
 
   def update(self, enabled, CS, frame, actuators, pcm_cancel_cmd, hud_alert,
              left_line, right_line, lead, left_lane_depart, right_lane_depart):
-
+    self.sm.update(0)
+    
     # *** compute control surfaces ***
 
     # gas and brake
