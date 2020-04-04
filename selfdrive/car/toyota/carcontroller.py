@@ -106,6 +106,8 @@ class CarController():
   def update(self, enabled, CS, frame, actuators, pcm_cancel_cmd, hud_alert,
              left_line, right_line, lead, left_lane_depart, right_lane_depart):
     self.sm.update(0)
+    lead_rel_speed = sm['radarState'].leadOne.vRel
+    lead_distance =  sm['radarState'].leadOne.dRel
     
     # *** compute control surfaces ***
 
