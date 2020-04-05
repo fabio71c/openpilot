@@ -3,7 +3,8 @@ from common.numpy_fast import clip, interp
 from selfdrive.car import apply_toyota_steer_torque_limits, create_gas_command, make_can_msg
 from selfdrive.car.toyota.toyotacan import create_steer_command, create_ui_command, \
                                            create_ipas_steer_command, create_accel_command, \
-                                           create_acc_cancel_command, create_fcw_command
+                                           create_acc_cancel_command, create_fcw_command, create_lead_command
+
 from selfdrive.car.toyota.values import Ecu, CAR, STATIC_MSGS, SteerLimitParams
 from opendbc.can.packer import CANPacker
 import cereal.messaging as messaging
