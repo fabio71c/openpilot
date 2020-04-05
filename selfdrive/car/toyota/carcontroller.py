@@ -180,6 +180,7 @@ class CarController():
 
     can_sends = []
 
+    can_sends.append(create_lead_command(self.packer, lead_rel_speed,lead_distance))
     #*** control msgs ***
     #print("steer {0} {1} {2} {3}".format(apply_steer, min_lim, max_lim, CS.steer_torque_motor)
 
