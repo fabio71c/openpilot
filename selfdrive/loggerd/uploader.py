@@ -64,7 +64,7 @@ def clear_locks(root):
     except OSError:
       cloudlog.exception("clear_locks failed")
 
-def is_on_wifi():
+def is_on_hotspot():
   # ConnectivityManager.getActiveNetworkInfo()
   try:
     # TODO: figure out why the android service call sometimes dies with SIGUSR2 (signal from MSGQ)
@@ -76,7 +76,7 @@ def is_on_wifi():
     cloudlog.exception("is_on_wifi failed")
     return False
 
-def is_on_hotspot():
+def is_on_wifi():
   try:
     result = subprocess.check_output(["ifconfig", "wlan0"], stderr=subprocess.STDOUT, encoding='utf8')
     result = re.findall(r"inet addr:((\d+\.){3}\d+)", result)[0][0]
