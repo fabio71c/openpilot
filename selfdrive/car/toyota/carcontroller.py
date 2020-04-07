@@ -96,6 +96,8 @@ class CarController():
     self.ipas_reset_counter = 0
     self.last_fault_frame = -200
     self.steer_rate_limited = False
+    self.lead_rel_speed = 255
+    self.lead_distance = 255
 
     self.fake_ecus = set()
     if enable_camera: self.fake_ecus.add(Ecu.fwdCamera)
@@ -103,14 +105,13 @@ class CarController():
     if enable_apg: self.fake_ecus.add(Ecu.apgs)
 
     self.packer = CANPacker(dbc_name)
-    self.lead_rel_speed = 255
-    self.lead_distance = 255
 
   def update(self, enabled, CS, frame, actuators, pcm_cancel_cmd, hud_alert,
              left_line, right_line, lead, left_lane_depart, right_lane_depart):
     self.sm.update(0)
-    self.lead_rel_speed = self.sm['radarState'].leadOne.vRel
-    self.lead_distance = self.sm['radarState'].leadOne.dRel
+    if self.sm.updated['radarState']:
+      self.lead_rel_speed = self.sm['radarState'].leadOne.vRel
+      self.lead_distance = self.sm['radarState'].leadOne.dRel
     
     # *** compute control surfaces ***
 
@@ -182,7 +183,7 @@ class CarController():
 
     can_sends = []
 
-    can_sends.append(create_lead_command(self.packer, lead_rel_speed,lead_distance))
+    can_sends.append(create_lead_command(self.packer, self.lead_rel_speed, self.lead_distance))
     #*** control msgs ***
     #print("steer {0} {1} {2} {3}".format(apply_steer, min_lim, max_lim, CS.steer_torque_motor)
 
