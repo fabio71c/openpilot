@@ -82,7 +82,7 @@ def create_lead_command(packer, lead_rel_speed, lead_distance):
     "LEAD_RELSPEED": lead_rel_speed,
     "LEAD_LONG_DIST": lead_distance,
   }
-  return packer.make_can_msg("LEADINFO", 0, values)
+  return packer.make_can_msg("LEAD_INFO", 0, values)
 
 
 def create_fcw_command(packer, fcw):
