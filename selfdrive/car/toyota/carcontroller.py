@@ -97,7 +97,7 @@ class CarController():
     self.last_fault_frame = -200
     self.steer_rate_limited = False
     self.lead_rel_speed = 255
-    self.lead_distance = 255
+    self.lead_long_dist = 255
 
     self.fake_ecus = set()
     if enable_camera: self.fake_ecus.add(Ecu.fwdCamera)
@@ -111,7 +111,7 @@ class CarController():
     self.sm.update(0)
     if self.sm.updated['radarState']:
       self.lead_rel_speed = self.sm['radarState'].leadOne.vRel
-      self.lead_distance = self.sm['radarState'].leadOne.dRel
+      self.lead_long_dist = self.sm['radarState'].leadOne.dRel
     
     # *** compute control surfaces ***
 
@@ -183,7 +183,7 @@ class CarController():
 
     can_sends = []
 
-    can_sends.append(create_lead_command(self.packer, self.lead_rel_speed, self.lead_distance))
+    can_sends.append(create_lead_command(self.packer, self.lead_rel_speed, self.lead_long_dist))
     #*** control msgs ***
     #print("steer {0} {1} {2} {3}".format(apply_steer, min_lim, max_lim, CS.steer_torque_motor)
 
