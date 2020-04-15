@@ -292,17 +292,6 @@ class CarInterface(CarInterfaceBase):
       ret.lateralTuning.lqr.l = [0.3233671, 0.3185757]
       ret.lateralTuning.lqr.dcGain = 0.002237852961363602
 
-    ret.longitudinalTuning.deadzoneBP = [0., 9.]
-    ret.longitudinalTuning.deadzoneV = [0., .15]
-    ret.stoppingControl = False
-    ret.startAccel = 0.0
-
-    ret.gasMaxBP = [0.,50.]
-    ret.gasMaxV = [0.05,0.7]
-
-    ret.longitudinalTuning.kpBP = [0.]
-    ret.longitudinalTuning.kiBP = [0.]
-    
     ret.steerRateCost = 1.
     ret.centerToFront = ret.wheelbase * 0.44
 
@@ -347,6 +336,19 @@ class CarInterface(CarInterfaceBase):
     # intercepting the DSU is a community feature since it requires unofficial hardware
     ret.communityFeature = ret.enableGasInterceptor or ret.enableDsu or smartDsu
 
+    ret.longitudinalTuning.deadzoneBP = [0., 9.]
+    ret.longitudinalTuning.deadzoneV = [0., .15]
+    ret.stoppingControl = False
+    ret.startAccel = 0.0
+
+    ret.gasMaxBP = [0.,50.]
+    ret.gasMaxV = [0.05,0.7]
+
+    ret.longitudinalTuning.kpBP = [0.]
+    ret.longitudinalTuning.kpV = [0.6]
+    ret.longitudinalTuning.kiBP = [0.]
+    ret.longitudinalTuning.kiV = [0.001]
+
     return ret
 
   # returns a car.CarState
@@ -361,14 +363,6 @@ class CarInterface(CarInterfaceBase):
     ret = car.CarState.new_message()
 
     ret.canValid = True #self.cp.can_valid and self.cp_cam.can_valid
-    
-    # lon tuning
-    ret.longitudinalTuning.kpV = self.CS.tuning_long_p
-    ret.longitudinalTuning.kiV = self.CS.tuning_long_i
-    
-    self.CS.tuning_long_i = [0.6]
-    self.CS.tuning_long_p = [0.01]
-
 
     # speeds
     ret.vEgo = self.CS.v_ego
