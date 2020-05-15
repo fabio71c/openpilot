@@ -71,7 +71,7 @@ class CarInterface(CarInterfaceBase):
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.2], [0.05]]
       ret.lateralTuning.pid.kf = 0.00003   # full torque for 20 deg at 80mph means 0.00007818594
       
-    elif candidate == CAR.COROLLA:
+    elif candidate == CAR.OLD_CAR:
       stop_and_go = True
       ret.safetyParam = 100
       ret.wheelbase = 2.455
