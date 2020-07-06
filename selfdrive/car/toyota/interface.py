@@ -69,7 +69,7 @@ class CarInterface(CarInterfaceBase):
       tire_stiffness_factor = 0.444  # not optimized yet
       ret.mass = 6200.0
       
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.2], [0.07]]
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.7], [0.01]]
       ret.lateralTuning.pid.kf = 0.000078   # full torque for 20 deg at 80mph means 0.00007818594
       
     elif candidate == CAR.COROLLA:
@@ -304,7 +304,7 @@ class CarInterface(CarInterfaceBase):
     if ret.enableGasInterceptor:
       ret.gasMaxBP = [0., 9., 35]
       ret.gasMaxV = [0.05, 0.05, 0.7]
-      ret.longitudinalTuning.kpV = [0.2, 0.2, 0.2]
+      ret.longitudinalTuning.kpV = [0.5, 0.5, 0.5]
       ret.longitudinalTuning.kiV = [0.01, 0.01]
     else:
       ret.gasMaxBP = [0.]
