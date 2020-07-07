@@ -70,7 +70,7 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 6200.0
       
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.7], [0.01]]
-      ret.lateralTuning.pid.kf = 0.00003   # full torque for 20 deg at 80mph means 0.00007818594
+      ret.lateralTuning.pid.kf = 0.00007818594   # full torque for 20 deg at 80mph means 0.00007818594
       
     elif candidate == CAR.COROLLA:
       stop_and_go = False
