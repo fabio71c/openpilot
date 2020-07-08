@@ -65,11 +65,11 @@ class CarInterface(CarInterfaceBase):
       stop_and_go = False
       ret.safetyParam = 100
       ret.wheelbase = 2.455
-      ret.steerRatio = 14.8
+      ret.steerRatio = 11.
       tire_stiffness_factor = 0.444  # not optimized yet
       ret.mass = 6200.0
       
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.7], [0.1]]
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.7], [0.01]]
       ret.lateralTuning.pid.kf = 0.00007818594   # full torque for 20 deg at 80mph means 0.00007818594
       
     elif candidate == CAR.COROLLA:
