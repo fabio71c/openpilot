@@ -65,7 +65,7 @@ class CarInterface(CarInterfaceBase):
       stop_and_go = False
       ret.safetyParam = 100
       ret.wheelbase = 2.455
-      ret.steerRatio = 13.5
+      ret.steerRatio = 13.
       tire_stiffness_factor = 0.444  # not optimized yet
       ret.mass = 6200.0
       
@@ -298,13 +298,14 @@ class CarInterface(CarInterfaceBase):
 
     ret.longitudinalTuning.deadzoneBP = [0., 9.]
     ret.longitudinalTuning.deadzoneV = [0., .15]
-    ret.longitudinalTuning.kpBP = [0., 5., 50.]
+    ret.longitudinalTuning.kpBP = [0., 35., 60.]
     ret.longitudinalTuning.kiBP = [0., 50.]
 
     if ret.enableGasInterceptor:
-      ret.gasMaxBP = [0., 9., 35]
-      ret.gasMaxV = [0.05, 0.05, 0.7]
-      ret.longitudinalTuning.kpV = [0.2, 0.2, 0.5]
+      ret.gasMaxBP = [0., 35., 60]
+      ret.gasMaxV = [0.05, 0.6, 0.7]
+
+      ret.longitudinalTuning.kpV = [0.1, 0.2, 0.5]
       ret.longitudinalTuning.kiV = [0.01, 0.01]
     else:
       ret.gasMaxBP = [0.]
