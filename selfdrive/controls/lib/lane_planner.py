@@ -86,6 +86,7 @@ class LanePlanner():
     self.r_poly[3] += CAMERA_OFFSET
 
     # virtual center lane, when width is big and speed is low
+    current_lane_width = abs(self.l_poly[3] - self.r_poly[3])
     if v_ego < 50. / 3.6 and current_lane_width > 4.0:
       new_l_poly = self.l_poly[3] + CAMERA_OFFSET + current_lane_width / 2.
     else:
@@ -93,7 +94,6 @@ class LanePlanner():
 
     # Find current lanewidth
     self.lane_width_certainty += 0.05 * (self.l_prob * self.r_prob - self.lane_width_certainty)
-    current_lane_width = abs(self.l_poly[3] - self.r_poly[3])
     new_current_lane_width = abs(new_l_poly - self.r_poly[3])
     self.lane_width_estimate += 0.005 * (new_current_lane_width - self.lane_width_estimate)
     speed_lane_width = interp(v_ego, [0., 31.], [2.8, 3.5])
