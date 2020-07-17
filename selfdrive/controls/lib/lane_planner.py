@@ -88,8 +88,8 @@ class LanePlanner():
       self.r_poly[3] += CAMERA_OFFSET - current_lane_width / 4
     elif self.l_prob <= 0.1:
       print("mius2")
-      self.l_poly[3] += CAMERA_OFFSET - current_lane_width / 2
-      self.r_poly[3] += CAMERA_OFFSET - current_lane_width / 2
+      self.l_poly[3] += CAMERA_OFFSET - 2
+      self.r_poly[3] += CAMERA_OFFSET - 2
 
     else:
       self.l_poly[3] += CAMERA_OFFSET
