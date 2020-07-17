@@ -86,12 +86,13 @@ class LanePlanner():
     if current_lane_width > 4.0 and self.l_prob >= 0.1:
       self.l_poly[3] += CAMERA_OFFSET - current_lane_width / 4
       self.r_poly[3] += CAMERA_OFFSET - current_lane_width / 4
-    elif self.l_prob <= 0.1:
-      print("mius2")
-      self.p_poly += - 2
     else:
       self.l_poly[3] += CAMERA_OFFSET
       self.r_poly[3] += CAMERA_OFFSET
+
+    if self.l_prob <= 0.1:
+      print("mius2")
+      self.p_poly += - 2
 
     self.lane_width_certainty += 0.05 * (self.l_prob * self.r_prob - self.lane_width_certainty)
     self.lane_width_estimate += 0.005 * (current_lane_width - self.lane_width_estimate)
