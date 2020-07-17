@@ -89,10 +89,22 @@ class LanePlanner():
       self.l_poly[3] += CAMERA_OFFSET - current_lane_width / 4
       self.r_poly[3] += CAMERA_OFFSET - current_lane_width / 4
       print("|_______|")
-    else:
+
+    if current_lane_width < 3.7 and self.l_prob > 0.1 and self.r_prob >  0.1:
       self.l_poly[3] += CAMERA_OFFSET
       self.r_poly[3] += CAMERA_OFFSET
       print("|__|")
+
+   if current_lane_width < 3.7 and self.l_prob < 0.1 and self.r_prob > 0.1:
+      self.l_poly[3] += CAMERA_OFFSET
+      self.r_poly[3] += CAMERA_OFFSET
+      print("__|")
+
+  if current_lane_width < 3.7 and self.l_prob > 0.1 and self.r_prob < 0.1:
+      self.l_poly[3] += CAMERA_OFFSET
+      self.r_poly[3] += CAMERA_OFFSET
+      print("|__")
+
       
     #When it sees only right lane, and the lane_width is wider than 3.7.
     if current_lane_width > 3.7 and self.l_prob < 0.1 and self.r_prob > 0.1:
