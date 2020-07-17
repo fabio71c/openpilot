@@ -95,12 +95,12 @@ class LanePlanner():
       self.r_poly[3] += CAMERA_OFFSET
       print("|__|")
 
-   if current_lane_width < 3.7 and self.l_prob < 0.1 and self.r_prob > 0.1:
+    if current_lane_width < 3.7 and self.l_prob < 0.1 and self.r_prob > 0.1:
       self.l_poly[3] += CAMERA_OFFSET
       self.r_poly[3] += CAMERA_OFFSET
       print("__|")
 
-  if current_lane_width < 3.7 and self.l_prob > 0.1 and self.r_prob < 0.1:
+    if current_lane_width < 3.7 and self.l_prob > 0.1 and self.r_prob < 0.1:
       self.l_poly[3] += CAMERA_OFFSET
       self.r_poly[3] += CAMERA_OFFSET
       print("|__")
