@@ -87,19 +87,18 @@ class LanePlanner():
     self.r_poly[3] += CAMERA_OFFSET
     current_lane_width = abs(self.l_poly[3] - self.r_poly[3])
     
-    if current_lane_width > 3.7 and self.l_prob >= 0.1 and self.r_prob >= 0.1:
+    if current_lane_width > 3.7 and self.l_prob > 0.1 and self.r_prob > 0.1:
       self.l_poly[3] += CAMERA_OFFSET - current_lane_width / 4
       self.r_poly[3] += CAMERA_OFFSET - current_lane_width / 4
-      print("|_______|")
+      print("   |_______|   ")
       
-    if current_lane_width > 3.7 and self.r_prob >= 0.1:
+    if current_lane_width > 3.7 and self.l_prob < 0.1 and self.r_prob > 0.1:
       self.p_poly[3] = self.r_poly[3] + current_lane_width / 4
-      print("_______|")
+      print("    _______|   ")
     
-    #When it sees no lines, and the lane_width is wider than 3.7.
     if current_lane_width > 3.7 and self.l_prob < 0.1 and self.r_prob < 0.1:
       self.p_poly[3] = self.p_poly[3] - current_lane_width / 4
-      print("_______")
+      print("    _______    ")
       
     self.lane_width_certainty += 0.05 * (self.l_prob * self.r_prob - self.lane_width_certainty)
     self.lane_width_estimate += 0.005 * (current_lane_width - self.lane_width_estimate)
