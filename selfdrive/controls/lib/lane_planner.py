@@ -83,6 +83,7 @@ class LanePlanner():
 
   def update_d_poly(self, v_ego):
     current_lane_width = abs(self.l_poly[3] - self.r_poly[3])
+    print(current_lane_width)
     if current_lane_width > 4.0:
       self.l_poly[3] += CAMERA_OFFSET - current_lane_width / 4
       self.r_poly[3] += CAMERA_OFFSET - current_lane_width / 4
