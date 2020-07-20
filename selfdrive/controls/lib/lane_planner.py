@@ -94,7 +94,7 @@ class LanePlanner():
       self.r_poly[3] += CAMERA_OFFSET
       
     if self.lane_width_estimate > 3.7 and self.l_prob < 0.1 and self.r_prob > 0.1:
-      self.p_poly[3] = self.r_poly[3] + self.lane_width_estimate / 4
+      self.p_poly[3] = self.r_poly[3] + 2
     
     if self.lane_width_estimate > 3.7 and self.l_prob < 0.1 and self.r_prob < 0.1:
       self.p_poly[3] = self.p_poly[3] - self.lane_width_estimate / 4
