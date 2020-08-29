@@ -73,7 +73,7 @@ class CarInterface(CarInterfaceBase):
       ret.lateralTuning.lqr.dcGain = 0.002237852961363602
 
     elif candidate == CAR.COROLLA:
-      stop_and_go = False
+      stop_and_go = True
       ret.safetyParam = 100
       ret.wheelbase = 2.70
       ret.steerRatio = 18.27
